@@ -5,7 +5,7 @@ import lombok.*;
 
 @Data
 @Entity
-@Table
+@Table(name= "order_line_item_t")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -16,6 +16,11 @@ public class OrderLineItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private Long orderNumber;
     @Column
     private int quantity;
+
+    private Double unitPrice;
+
+    private String skuCode;
 }

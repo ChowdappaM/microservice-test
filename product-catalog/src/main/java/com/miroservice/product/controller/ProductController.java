@@ -1,5 +1,7 @@
 package com.miroservice.product.controller;
 
+import com.miroservice.product.dto.ProductRequest;
+import com.miroservice.product.dto.ProductResponse;
 import com.miroservice.product.model.Product;
 import com.miroservice.product.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -8,21 +10,30 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("api/v1/product")
+@RequestMapping("api/v1")
 @RequiredArgsConstructor
 public class ProductController {
 
-    @GetMapping("{id}")
+    @GetMapping("/product/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable("id") long id) {
         return new ResponseEntity<>(productService.getProductDeatils(id), HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createProduct(@RequestBody Product product) {
-        productService.createProduct(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @GetMapping("/products")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> getAllProducts(){
+        return productService.getProductList();
     }
+
+    @PostMapping("/product")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createProduct1(@RequestBody ProductRequest productRequest) {
+        productService.createProduct1(productRequest);
+    }
+
 
     private ProductService productService;
 

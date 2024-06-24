@@ -1,5 +1,6 @@
 package com.miroservice.order.controller;
 
+import com.miroservice.order.dto.OrderRequest;
 import com.miroservice.order.model.Order;
 import com.miroservice.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createOrder(@RequestBody Order order) {
-        orderService.placeOrder(order);
+    public ResponseEntity<Void> createOrder(@RequestBody OrderRequest orderRequest) throws Exception {
+        orderService.placeOrder(orderRequest);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @Autowired

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "order_t")
 @Setter
@@ -18,6 +20,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderId;
 
-    @Column
-    private int customerId;
+    private String orderNumber;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<OrderLineItem> orderLineItems;
+
 }
