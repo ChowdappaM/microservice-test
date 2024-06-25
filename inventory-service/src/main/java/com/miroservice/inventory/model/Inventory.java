@@ -19,8 +19,8 @@ public class Inventory {
     private Long id;
 
     @Column
-    private Long productId;
+    private String skuCode;
 
     @Column
-    private int quantity;
+    private Integer quantity;
 }
